@@ -1,8 +1,10 @@
 package com.project1.call_management_app.controller;
 
 import com.project1.call_management_app.dto.UserDTO;
+import com.project1.call_management_app.model.User;
 import com.project1.call_management_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +18,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @PostMapping
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
-        return ResponseEntity.ok(userService.createUser(userDTO));
+    public ResponseEntity<UserDTO> createUser(@RequestBody User user) {
+        UserDTO createdUser = userService.createUser(user);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

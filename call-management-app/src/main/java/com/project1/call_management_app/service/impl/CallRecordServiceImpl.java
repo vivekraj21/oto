@@ -32,7 +32,7 @@ public class CallRecordServiceImpl implements CallRecordService {
                 callRecord.getCallStartTime(),
                 callRecord.getCallEndTime(),
                 callRecord.getRecordingText(),
-                callRecord.getUser().getId()
+                callRecord.getUserId()
         );
     }
 
@@ -49,7 +49,7 @@ public class CallRecordServiceImpl implements CallRecordService {
                 callRecordDTO.getCallStartTime(),
                 callRecordDTO.getCallEndTime(),
                 callRecordDTO.getRecordingText(),
-                user.get()
+                user.get().getId()
         );
     }
 

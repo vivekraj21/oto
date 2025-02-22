@@ -11,6 +11,6 @@ public interface UserSessionRepository extends JpaRepository<UserSession, UUID> 
     Optional<UserSession> findByUserIdAndIsActiveTrue(Long userId);
 
     // Find a session by authToken (if needed later)
-    Optional<UserSession> findByAuthToken(String authToken);
+//    Optional<UserSession> findByAuthToken(String authToken);
 }
 

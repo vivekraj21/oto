@@ -17,6 +17,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     private UserDTO convertToDTO(User user) {
         return new UserDTO(user.getId(), user.getName(), user.getPhoneNumber(), user.getEmail());
     }
@@ -26,9 +30,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO createUser(UserDTO userDTO) {
-        User user = userRepository.save(convertToEntity(userDTO));
-        return convertToDTO(user);
+    public UserDTO createUser(User user) {
+        User userSaved = userRepository.save(user);
+        return convertToDTO(userSaved);
     }
 
     @Override

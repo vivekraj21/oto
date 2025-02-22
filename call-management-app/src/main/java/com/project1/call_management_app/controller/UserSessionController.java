@@ -60,5 +60,6 @@ public class UserSessionController {
                 session.isActive()
         );
     }
+
 }
 
