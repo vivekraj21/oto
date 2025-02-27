@@ -11,14 +11,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class TranscriptionServiceImpl implements TranscriptionService {
-    private static final String API_KEY = "64e0aabb58f35b19f2226453159f365815aa2632aca988e2196511d7ac4464fcd7a10ffc963d6755a5ea76a589aaa24c8fecd1e42ac716d19f52a1ba109e554e"; // Replace with actual API key
+    private static final String API_KEY = "64e0aabb58f35b19f2226453159f365815aa2632aca988e2196511d7ac4464fcd7a10ffc963d6755a5ea76a589aaa24c8fecd1e42ac716d19f52a1ba109e554e";
     private final OkHttpClient client = new OkHttpClient();
-    private final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+    private final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     @Override
     public String processFile(MultipartFile file) throws IOException {
         // Step 1: Get Upload URL
-        RequestBody requestBody = RequestBody.create(JSON, "{\"file_name\": \"" + file.getOriginalFilename() + "\"}");
+        String filename = file.getOriginalFilename();
+        RequestBody requestBody = RequestBody.create(JSON, "{\"file_name\": \"" + filename + "\"}");
         Request request = new Request.Builder()
                 .url("https://api.tor.app/developer/transcription/local_file/get_upload_url")
                 .post(requestBody)
