@@ -18,13 +18,29 @@ public class OpenAITranscriptionController {
     private String apiKey;
 
     @GetMapping("/audio")
-    public String audio(@RequestParam String filePath){
-        OpenAiService service = new OpenAiService(apiKey);
-        CreateTranscriptionRequest request = new CreateTranscriptionRequest();
-        request.setModel("whisper-1");
-        File file = new File(filePath);
-        String transcription = service.createTranscription(request,filePath).getText();
-        return transcription;
+    public String transcribeAudio(@RequestParam String filePath) {
+        try {
+            // Initialize OpenAI Service
+            OpenAiService openAiService = new OpenAiService(apiKey);
+
+            // Validate File
+            File file = new File(filePath);
+            if (!file.exists() || !file.isFile()) {
+                return "Error: File not found at path: " + filePath;
+            }
+
+            // Create transcription request
+            CreateTranscriptionRequest request = CreateTranscriptionRequest.builder()
+                    .model("whisper-1")
+                    .build();
+
+            // Get Transcription
+            String transcription = openAiService.createTranscription(request, file).getText();
+            return transcription;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error processing transcription: " + e.getMessage();
+        }
     }
 }
-
