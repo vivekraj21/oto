@@ -31,6 +31,7 @@ public class CallRecordServiceImpl implements CallRecordService {
                 callRecord.getReceiverNumber(),
                 callRecord.getCallStartTime(),
                 callRecord.getCallEndTime(),
+                callRecord.getIncomingFilePath(),
                 callRecord.getRecordingText(),
                 callRecord.getUserId()
         );
@@ -48,6 +49,7 @@ public class CallRecordServiceImpl implements CallRecordService {
                 callRecordDTO.getReceiverNumber(),
                 callRecordDTO.getCallStartTime(),
                 callRecordDTO.getCallEndTime(),
+                callRecordDTO.getIncomingFilePath(),
                 callRecordDTO.getRecordingText(),
                 user.get().getId()
         );

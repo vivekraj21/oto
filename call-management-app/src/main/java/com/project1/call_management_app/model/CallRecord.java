@@ -24,6 +24,7 @@ public class CallRecord {
     private String receiverNumber;
     private LocalDateTime callStartTime;
     private LocalDateTime callEndTime;
+    private String incomingFilePath;
     @Lob
     @Column(columnDefinition = "TEXT")
     private String recordingText;

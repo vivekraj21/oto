@@ -1,0 +1,71 @@
+[33mcommit b29cd7077cd1070d1de20a5a126984dfe5b500a4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: vivekraj21 <vivekrajrollno21@gmail.com>
+Date:   Mon Mar 10 00:39:49 2025 +0530
+
+    we are saving audio returned string result in callrecord.Next - handle error correctly when transcribeAudio returns error.Then we should be able to save the audio somewhere because we don't want to lose audio without translation.
+
+[33mcommit 30f95d8ceea73342da4451e0b23c781c67a678c3[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: vivekraj21 <vivekrajrollno21@gmail.com>
+Date:   Sun Mar 9 23:32:08 2025 +0530
+
+    removed transkriptor dependency and logic bcs that was not working instead using openAI api.
+
+[33mcommit 982250b90829b56e124b8663ba395b51cdfbed11[m
+Author: vivekraj21 <vivekrajrollno21@gmail.com>
+Date:   Sat Mar 8 23:20:55 2025 +0530
+
+    added openai transcription controller working but got issue : You exceeded your current quota, please check your plan and billing details.
+
+[33mcommit 654e3814d553f35f7f4f065d497407d4efdea57a[m
+Author: vivekraj21 <vivekrajrollno21@gmail.com>
+Date:   Mon Mar 3 23:44:16 2025 +0530
+
+    added openai transcription controller(not working)
+
+[33mcommit 7ca40f2f01b35dfac778e17e69f5efdfedb477ee[m
+Author: vivekraj21 <vivekrajrollno21@gmail.com>
+Date:   Sun Mar 2 23:56:41 2025 +0530
+
+    added openai dependency
+
+[33mcommit 2a102c2fcf960a1b28b1ae5f52618b400e74f03a[m
+Author: vivekraj21 <vivekrajrollno21@gmail.com>
+Date:   Thu Feb 27 23:16:44 2025 +0530
+
+    processFile for converting mp3 to text not working with Transkriptor code.
+
+[33mcommit 2ca0ad7a9985566abcdde01fef349c20ebc47556[m
+Author: vivekraj21 <vivekrajrollno21@gmail.com>
+Date:   Wed Feb 26 23:19:41 2025 +0530
+
+    updated properties file
+
+[33mcommit db7376c80ab86e66e591da3b70fa0911f8ef800e[m
+Author: vivekraj21 <vivekrajrollno21@gmail.com>
+Date:   Mon Feb 24 02:19:29 2025 +0530
+
+    Transciption logic is added but not working properly.
+
+[33mcommit 60073c5d094bef30db8c71d406d95125a949b322[m
+Author: vivekraj21 <vivekrajrollno21@gmail.com>
+Date:   Sun Feb 23 02:44:41 2025 +0530
+
+    user CRUD operation working.
+
+[33mcommit 0f8750616367822e4ae8e3f40716aaf6a1a108a7[m
+Author: vivekraj21 <vivekrajrollno21@gmail.com>
+Date:   Fri Feb 21 08:23:16 2025 +0530
+
+    added userSession entity and it's logic to maintain login logout details of user.
+
+[33mcommit 1e73bb427c818aefa3bc03b0c50dd76af8e97d51[m
+Author: vivekraj21 <vivekrajrollno21@gmail.com>
+Date:   Thu Feb 20 00:25:18 2025 +0530
+
+    adding entities
+
+[33mcommit 16918cfb746273ba168ac070c0a56b20f505ae9b[m
+Author: Vivek Raj <103635442+vivekraj21@users.noreply.github.com>
+Date:   Tue Jul 16 00:37:29 2024 +0530
+
+    Initial commit
