@@ -3,6 +3,7 @@ import com.project1.call_management_app.dto.CallRecordDTO;
 import com.project1.call_management_app.model.CallRecord;
 import com.project1.call_management_app.service.TranscriptionService;
 import com.project1.call_management_app.service.CallRecordService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,20 +20,35 @@ public class OpenAITranscriptionController {
     }
 
     @PostMapping("/audio")
-    public ResponseEntity<CallRecordDTO> transcribeAudio(@RequestBody CallRecordDTO callRecordDTO) {
-        // Extract file path from CallRecord object
+    public ResponseEntity<?> transcribeAudio(@RequestBody CallRecordDTO callRecordDTO) {
         String filePath = callRecordDTO.getIncomingFilePath();
 
-        // Get transcription from OpenAI
-        String transcription = transcriptionService.transcribeAudio(filePath);
+        try {
+            // Attempt transcription
+            String transcription = transcriptionService.transcribeAudio(filePath);
 
-        // Set transcription text in CallRecord
-        callRecordDTO.setRecordingText(transcription);
+            // Check if the response contains an error message
+            if (transcription == null || transcription.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body("Transcription failed: Received empty or null transcription.");
+            }
 
-        // Save the updated CallRecord to database
-        CallRecordDTO savedRecord = callRecordService.saveCallRecord(callRecordDTO);
+            if (transcription.toLowerCase().contains("error")) {  // General error handling
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body("Transcription failed: " + transcription);
+            }
 
-        // Return response
-        return ResponseEntity.ok(savedRecord);
+            // Set transcription text in CallRecordDTO
+            callRecordDTO.setRecordingText(transcription);
+
+            // Do NOT save, just return the transcription result
+            return ResponseEntity.ok(callRecordDTO);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error processing transcription: " + e.getMessage());
+        }
     }
+
+
 }
