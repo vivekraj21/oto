@@ -6,6 +6,7 @@ import com.project1.call_management_app.service.FailedTranscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 @Service
 public class FailedTranscriptionServiceImpl implements FailedTranscriptionService {
@@ -13,8 +14,8 @@ public class FailedTranscriptionServiceImpl implements FailedTranscriptionServic
     private FailedTranscriptionRepository failedTranscriptionRepository;
 
     @Override
-    public void saveFailedTranscription(Long userId, String filePath, String errorMessage) {
-        FailedTranscription failedTranscription = new FailedTranscription(userId, filePath, errorMessage);
+    public void saveFailedTranscription(FailedTranscription failedTranscription) {
+        failedTranscription.setTimestamp(LocalDateTime.now()); // Ensure timestamp is set
         failedTranscriptionRepository.save(failedTranscription);
     }
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface FailedTranscriptionService {
 
-    void saveFailedTranscription(Long userId, String filePath, String errorMessage);
+    void saveFailedTranscription(FailedTranscription failedTranscription);
 
     List<FailedTranscription> getFailedTranscriptionsByUser(Long userId);
 }
