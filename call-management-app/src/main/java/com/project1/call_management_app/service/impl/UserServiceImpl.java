@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private UserDTO convertToDTO(User user) {
-        return new UserDTO(user.getId(), user.getName(), user.getPhoneNumber(), user.getEmail());
+        return new UserDTO(user.getId(), user.getFirstname(),user.getLastname(), user.getPhoneNumber(), user.getEmail());
     }
 
 //    private User convertToEntity(UserDTO userDTO) {

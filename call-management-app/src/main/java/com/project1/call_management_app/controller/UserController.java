@@ -1,8 +1,12 @@
 package com.project1.call_management_app.controller;
 
 import com.project1.call_management_app.dto.UserDTO;
+import com.project1.call_management_app.model.AuthenticationRequest;
+import com.project1.call_management_app.model.AuthenticationResponse;
+import com.project1.call_management_app.model.RegisterRequest;
 import com.project1.call_management_app.model.User;
 import com.project1.call_management_app.service.UserService;
+import com.project1.call_management_app.service.impl.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,21 +16,33 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private AuthenticationService authenticationService;
 
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @PostMapping
-    public ResponseEntity<UserDTO> createUser(@RequestBody User user) {
-        UserDTO createdUser = userService.createUser(user);
-        return new ResponseEntity(HttpStatus.OK);
+    @PostMapping("/register")
+    public ResponseEntity<AuthenticationResponse> createUser(@RequestBody RegisterRequest request) {
+       return ResponseEntity.ok(authenticationService.register(request));
     }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<AuthenticationResponse> createUser(@RequestBody AuthenticationRequest request) {
+       return ResponseEntity.ok(authenticationService.authenticate(request));
+    }
+
+//    @PostMapping("/register")
+//    public ResponseEntity<UserDTO> createUser(@RequestBody User user) {
+//        UserDTO createdUser = userService.createUser(user);
+//        return new ResponseEntity(HttpStatus.OK);
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {

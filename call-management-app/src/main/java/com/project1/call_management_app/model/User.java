@@ -1,10 +1,7 @@
 package com.project1.call_management_app.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,8 +10,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-@Setter
-@Getter
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -24,7 +21,8 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String firstname;
+    private String lastname;
     @Column(nullable = false, unique = true)
     private String phoneNumber;
     @Column(nullable = false, unique = true)
